@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.summerslurp_repopattern.databinding.FragmentHomeBinding
+import com.example.summerslurp_repopattern.view.adapter.DrinkAdapter
 import com.example.summerslurp_repopattern.viewModel.MainViewModel
 
 class HomeFragment: Fragment() {
@@ -25,5 +26,18 @@ class HomeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.loadData()
+
+        viewModel.loading.observe(viewLifecycleOwner) { loading ->
+            if (loading) {
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.progressBar.visibility = View.GONE
+            }
+        }
+
+        viewModel.drinkList.observe(viewLifecycleOwner) { drinkList ->
+            binding.rvDrinks.adapter = DrinkAdapter(drinkList)
+        }
     }
 }

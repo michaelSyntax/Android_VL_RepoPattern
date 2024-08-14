@@ -10,7 +10,7 @@ import com.example.summerslurp_repopattern.databinding.ListItemBinding
 import com.example.summerslurp_repopattern.model.datamodels.Drink
 
 class DrinkAdapter(
-    val listOfDrinks: List<Drink>
+    private val listOfDrinks: List<Drink>
 ): RecyclerView.Adapter<DrinkAdapter.ItemViewHolder>() {
 
     inner class ItemViewHolder(val binding: ListItemBinding): RecyclerView.ViewHolder(binding.root)
