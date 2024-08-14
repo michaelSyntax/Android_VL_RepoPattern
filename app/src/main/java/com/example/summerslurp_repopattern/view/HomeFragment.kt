@@ -26,20 +26,19 @@ class HomeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        addObservers()
+        setupActionButtons()
+    }
+
+    private fun setupActionButtons() {
+        TODO("Add functionality for deleteAll & loadAll")
+    }
+
+    private fun addObservers() {
         viewModel.loading.observe(viewLifecycleOwner) { visibility ->
             binding.progressBar.visibility = visibility
         }
 
-        viewModel.drinkList.observe(viewLifecycleOwner) { drinkList ->
-            binding.rvDrinks.adapter = DrinkAdapter(drinkList)
-        }
-
-        binding.fabDelete.setOnClickListener {
-            viewModel.deleteAll()
-        }
-
-        binding.fabDownload.setOnClickListener {
-            viewModel.loadData()
-        }
+        TODO("Add observer for drinkList and update recyclerView")
     }
 }

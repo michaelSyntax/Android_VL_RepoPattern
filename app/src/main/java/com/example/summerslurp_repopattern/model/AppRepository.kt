@@ -9,17 +9,10 @@ class AppRepository(
     private val api: DrinkApi,
     private val database: DrinkDatabase
 ) {
-    val drinkList = database.drinkDatabaseDAO.getAll()
 
-    suspend fun getDrinks() {
-        // Holt die Daten von der API
-        val newDrinkList = api.retrofitService.getDrinkList().drinks
+    // TODO: Create public val drinkList: LiveData from dao
 
-        // Fügt die Daten in die Datenbank ein
-        database.drinkDatabaseDAO.insertAll(newDrinkList)
-    }
+    // TODO: Add suspend fun getDrinks
 
-    suspend fun deleteAll() {
-        database.drinkDatabaseDAO.deleteAll()
-    }
+    // TODO: Add suspend fun deleteAll
 }
