@@ -26,12 +26,13 @@ class HomeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.loading.observe(viewLifecycleOwner) { loading ->
-            if (loading) {
-                binding.progressBar.visibility = View.VISIBLE
-            } else {
-                binding.progressBar.visibility = View.GONE
-            }
+        viewModel.loading.observe(viewLifecycleOwner) { visibility ->
+            binding.progressBar.visibility = visibility
+            //if (loading) {
+            //    binding.progressBar.visibility = View.VISIBLE
+            //} else {
+            //    binding.progressBar.visibility = View.GONE
+            //}
         }
 
         viewModel.drinkList.observe(viewLifecycleOwner) { drinkList ->

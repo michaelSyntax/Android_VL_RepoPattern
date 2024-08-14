@@ -2,6 +2,7 @@ package com.example.summerslurp_repopattern.viewModel
 
 import android.app.Application
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,22 +14,21 @@ import kotlinx.coroutines.launch
 
 class MainViewModel(application: Application): AndroidViewModel(application) {
     private val repository = AppRepository(DrinkApi, DrinkDatabase.getDatabase(application))
-
     val drinkList = repository.drinkList
 
-    private val _loading = MutableLiveData(false)
-    val loading: LiveData<Boolean>
+    private val _loading = MutableLiveData(View.GONE)
+    val loading: LiveData<Int>
         get() = _loading
 
     fun loadData() {
-        _loading.value = true
+        _loading.value = View.VISIBLE
         viewModelScope.launch {
             try {
                 repository.getDrinks()
-                _loading.value = false
+                _loading.value = View.GONE
             } catch (e: Exception) {
                 Log.e("ViewModel", "Es ist ein Fehler aufgetreten: $e")
-                _loading.value = false
+                _loading.value = View.GONE
             }
         }
     }
@@ -38,7 +38,7 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
             try {
                 repository.deleteAll()
             } catch (e: Exception) {
-                Log.e("ViewModel.deleteAll()", "Es ist ein Fehler aufgetreten: $e")
+                Log.e("ViewModel", "Es ist ein Fehler aufgetreten: $e")
             }
         }
     }
