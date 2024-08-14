@@ -12,8 +12,7 @@ import com.example.summerslurp_repopattern.model.remote.DrinkApi
 import kotlinx.coroutines.launch
 
 class MainViewModel(application: Application): AndroidViewModel(application) {
-    private val database = DrinkDatabase.getDatabase(application)
-    private val repository = AppRepository(DrinkApi, database)
+    private val repository = AppRepository(DrinkApi, DrinkDatabase.getDatabase(application))
 
     val drinkList = repository.drinkList
 
@@ -30,6 +29,16 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
             } catch (e: Exception) {
                 Log.e("ViewModel", "Es ist ein Fehler aufgetreten: $e")
                 _loading.value = false
+            }
+        }
+    }
+
+    fun deleteAll() {
+        viewModelScope.launch {
+            try {
+                repository.deleteAll()
+            } catch (e: Exception) {
+                Log.e("ViewModel.deleteAll()", "Es ist ein Fehler aufgetreten: $e")
             }
         }
     }

@@ -6,8 +6,9 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.summerslurp_repopattern.model.datamodels.Drink
 
-@Database(entities = [Drink::class], version = 1)
+@Database(entities = [Drink::class], version = 2)
 abstract class DrinkDatabase : RoomDatabase() {
+
     abstract val drinkDatabaseDAO: DrinkDatabaseDAO
 
     companion object {
@@ -19,7 +20,7 @@ abstract class DrinkDatabase : RoomDatabase() {
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
                         DrinkDatabase::class.java,
-                        "drink_database"
+                        "drink_db"
                     ).build()
                 }
                 return INSTANCE

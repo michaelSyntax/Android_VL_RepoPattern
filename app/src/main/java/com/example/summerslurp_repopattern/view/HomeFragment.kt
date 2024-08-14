@@ -26,8 +26,6 @@ class HomeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.loadData()
-
         viewModel.loading.observe(viewLifecycleOwner) { loading ->
             if (loading) {
                 binding.progressBar.visibility = View.VISIBLE
@@ -38,6 +36,14 @@ class HomeFragment: Fragment() {
 
         viewModel.drinkList.observe(viewLifecycleOwner) { drinkList ->
             binding.rvDrinks.adapter = DrinkAdapter(drinkList)
+        }
+
+        binding.fabDelete.setOnClickListener {
+            viewModel.deleteAll()
+        }
+
+        binding.fabDownload.setOnClickListener {
+            viewModel.loadData()
         }
     }
 }

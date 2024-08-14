@@ -12,13 +12,14 @@ class AppRepository(
     val drinkList = database.drinkDatabaseDAO.getAll()
 
     suspend fun getDrinks() {
-        withContext(Dispatchers.IO) {
+        // Holt die Daten von der API
+        val newDrinkList = api.retrofitService.getDrinkList().drinks
 
-            // Holt die Daten von der API
-            val newDrinkList = api.retrofitService.getDrinkList().drinks
+        // Fügt die Daten in die Datenbank ein
+        database.drinkDatabaseDAO.insertAll(newDrinkList)
+    }
 
-            // Fügt die Daten in die Datenbank ein
-            database.drinkDatabaseDAO.insertAll(newDrinkList)
-        }
+    suspend fun deleteAll() {
+        database.drinkDatabaseDAO.deleteAll()
     }
 }
