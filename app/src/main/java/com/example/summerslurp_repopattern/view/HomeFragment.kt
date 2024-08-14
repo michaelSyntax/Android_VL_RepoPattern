@@ -28,11 +28,6 @@ class HomeFragment: Fragment() {
 
         viewModel.loading.observe(viewLifecycleOwner) { visibility ->
             binding.progressBar.visibility = visibility
-            //if (loading) {
-            //    binding.progressBar.visibility = View.VISIBLE
-            //} else {
-            //    binding.progressBar.visibility = View.GONE
-            //}
         }
 
         viewModel.drinkList.observe(viewLifecycleOwner) { drinkList ->
