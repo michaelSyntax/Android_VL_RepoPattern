@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.moshi)
     implementation(libs.moshi.kotlin)
+    implementation(libs.logging.interceptor)
 
     // Coil
     implementation(libs.coil)
@@ -65,6 +66,4 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     annotationProcessor(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
-    // To use Kotlin Symbol Processing (KSP)
-    //ksp("androidx.room:room-compiler:$roomVersion")
 }
