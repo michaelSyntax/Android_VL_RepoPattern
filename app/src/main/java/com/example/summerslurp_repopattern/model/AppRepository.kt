@@ -23,6 +23,10 @@ class AppRepository(
         database.drinkDatabaseDAO.deleteAll()
     }
 
+    suspend fun getDrinkById(id: Long): Drink {
+        return database.drinkDatabaseDAO.getDrinkById(id)
+    }
+
     private suspend fun fetchListOfDrinksFromAPI(): List<Drink> {
         return api.retrofitService.getDrinkList().drinks
     }

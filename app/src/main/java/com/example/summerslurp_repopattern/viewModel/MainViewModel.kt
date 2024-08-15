@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.summerslurp_repopattern.model.AppRepository
+import com.example.summerslurp_repopattern.model.datamodels.Drink
 import com.example.summerslurp_repopattern.model.local.DrinkDatabase
 import com.example.summerslurp_repopattern.model.remote.DrinkApi
 import kotlinx.coroutines.launch
@@ -16,6 +17,10 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     private val database = DrinkDatabase.getDatabase(application)
     private val repository = AppRepository(DrinkApi, database)
     val listOfDrinks = repository.listOfDrinks
+
+    private val _selectedDrink = MutableLiveData<Drink>()
+    val selectedDrink: LiveData<Drink>
+        get() = _selectedDrink
 
     private val _loading = MutableLiveData(View.GONE)
     val loading: LiveData<Int>
@@ -39,6 +44,16 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         viewModelScope.launch {
             try {
                 repository.deleteAll()
+            } catch (e: Exception) {
+                Log.e("ViewModel", "Es ist ein Fehler aufgetreten: $e")
+            }
+        }
+    }
+
+    fun setDrinkById(id: Long) {
+        viewModelScope.launch {
+            try {
+                _selectedDrink.value = repository.getDrinkById(id)
             } catch (e: Exception) {
                 Log.e("ViewModel", "Es ist ein Fehler aufgetreten: $e")
             }

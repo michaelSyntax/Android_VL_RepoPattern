@@ -18,5 +18,8 @@ interface DrinkDatabaseDAO {
 
     @Query("DELETE from drink_table")
     suspend fun deleteAll()
+
+    @Query("SELECT * from drink_table where id=:id")
+    suspend fun getDrinkById(id: Long): Drink
 }
 

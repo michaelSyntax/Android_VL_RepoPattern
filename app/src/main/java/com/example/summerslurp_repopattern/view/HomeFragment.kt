@@ -47,7 +47,7 @@ class HomeFragment: Fragment() {
         }
 
         viewModel.listOfDrinks.observe(viewLifecycleOwner) { listOfDrinks: List<Drink> ->
-            binding.rvDrinks.adapter = DrinkAdapter(listOfDrinks)
+            binding.rvDrinks.adapter = DrinkAdapter(listOfDrinks, viewModel)
         }
     }
 }
