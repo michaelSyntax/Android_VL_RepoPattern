@@ -1,5 +1,7 @@
 package com.example.summerslurp_repopattern.model
 
+import androidx.lifecycle.LiveData
+import com.example.summerslurp_repopattern.model.datamodels.Drink
 import com.example.summerslurp_repopattern.model.local.DrinkDatabase
 import com.example.summerslurp_repopattern.model.remote.DrinkApi
 import kotlinx.coroutines.Dispatchers
@@ -10,9 +12,18 @@ class AppRepository(
     private val database: DrinkDatabase
 ) {
 
-    // TODO: Create public val drinkList: LiveData from dao
+    val listOfDrinks: LiveData<List<Drink>> = database.drinkDatabaseDAO.getAll()
 
-    // TODO: Add suspend fun getDrinks
+    suspend fun getDrinks() {
+        val listOfDrinks: List<Drink> = fetchListOfDrinksFromAPI()
+        database.drinkDatabaseDAO.insertAll(listOfDrinks)
+    }
 
-    // TODO: Add suspend fun deleteAll
+    suspend fun deleteAll() {
+        database.drinkDatabaseDAO.deleteAll()
+    }
+
+    private suspend fun fetchListOfDrinksFromAPI(): List<Drink> {
+        return api.retrofitService.getDrinkList().drinks
+    }
 }

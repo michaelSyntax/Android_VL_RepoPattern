@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.summerslurp_repopattern.databinding.FragmentHomeBinding
+import com.example.summerslurp_repopattern.model.datamodels.Drink
 import com.example.summerslurp_repopattern.view.adapter.DrinkAdapter
 import com.example.summerslurp_repopattern.viewModel.MainViewModel
 
@@ -31,7 +32,13 @@ class HomeFragment: Fragment() {
     }
 
     private fun setupActionButtons() {
-        TODO("Add functionality for deleteAll & loadAll")
+        binding.fabDownload.setOnClickListener {
+            viewModel.loadData()
+        }
+
+        binding.fabDelete.setOnClickListener {
+            viewModel.deleteAll()
+        }
     }
 
     private fun addObservers() {
@@ -39,6 +46,8 @@ class HomeFragment: Fragment() {
             binding.progressBar.visibility = visibility
         }
 
-        TODO("Add observer for drinkList and update recyclerView")
+        viewModel.listOfDrinks.observe(viewLifecycleOwner) { listOfDrinks: List<Drink> ->
+            binding.rvDrinks.adapter = DrinkAdapter(listOfDrinks)
+        }
     }
 }

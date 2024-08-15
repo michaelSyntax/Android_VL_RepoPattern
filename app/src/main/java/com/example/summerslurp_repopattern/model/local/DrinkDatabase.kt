@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.summerslurp_repopattern.model.datamodels.Drink
 
-@Database(entities = [Drink::class], version = 2)
+@Database(entities = [Drink::class], version = 1)
 abstract class DrinkDatabase : RoomDatabase() {
 
     abstract val drinkDatabaseDAO: DrinkDatabaseDAO

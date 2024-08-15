@@ -10,10 +10,13 @@ import com.example.summerslurp_repopattern.model.datamodels.Drink
 @Dao
 interface DrinkDatabaseDAO {
 
-    // TODO: add suspend fun insertAll
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(drinks: List<Drink>)
 
-    // TODO: add fun getAll
+    @Query("SELECT * FROM drink_table")
+    fun getAll() : LiveData<List<Drink>>
 
-    // TODO: add fun deleteAll
+    @Query("DELETE from drink_table")
+    suspend fun deleteAll()
 }
 
