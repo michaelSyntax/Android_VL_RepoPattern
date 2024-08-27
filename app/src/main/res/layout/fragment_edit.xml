@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.EditFragment">
+
+    <Button
+        android:id="@+id/edit_btnSave"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:padding="16dp"
+        android:text="@string/save"
+        app:layout_constraintEnd_toEndOf="@+id/edit_tilNumber"
+        app:layout_constraintStart_toEndOf="@+id/edit_btnDelete"
+        app:layout_constraintTop_toBottomOf="@+id/edit_tilNumber" />
+
+    <Button
+        android:id="@+id/edit_btnDelete"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="4dp"
+        android:padding="16dp"
+        android:text="@string/delete"
+        android:textColor="#FF0000"
+        app:iconTint="#FF0000"
+        app:layout_constraintEnd_toStartOf="@+id/edit_btnSave"
+        app:layout_constraintStart_toStartOf="@+id/edit_tilNumber"
+        app:layout_constraintTop_toBottomOf="@+id/edit_tilNumber"
+        app:strokeColor="#FF0000" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edit_tilName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="48dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_textInputName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/name" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/edit_tilNumber"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/edit_tilName"
+        app:layout_constraintStart_toStartOf="@+id/edit_tilName"
+        app:layout_constraintTop_toBottomOf="@+id/edit_tilName">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_textInputNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/item" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginBottom="16dp"
+        app:cardElevation="5dp"
+        app:contentPadding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/edit_tilName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/edit_ivContact"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_round_broken_image_24" />
+    </com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
